@@ -1,3 +1,7 @@
+[[bin]]
+name = "recently-read-book"
+path = "src/main.rs"
+
 [package]
 name = "recently-read-book"
 version = "0.1.0"

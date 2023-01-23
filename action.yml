@@ -1,0 +1,6 @@
+name: "Recently read book"
+description: "Posting to Gist the recently read book from Booklog"
+
+runs:
+  using: docker
+  image: Dockerfile
