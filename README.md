@@ -5,16 +5,35 @@
 ![](https://github.com/kzmat/recently-read/workflows/Update%20recently%20read/badge.svg)
 
 ## Overview
+
 Fetch latest read book from booklog and write it to gist.
 
-## Setup
+## Requirements
 
-1. Create a new GitHub Gist (https://gist.github.com/)
-2. Create a token with the `gist` and `repo` scope and copy it.(https://github.com/settings/tokens/new)
+- Booklog account https://booklog.jp/
+- Gist
+- Github token that can update a gist
 
-3. Fork this repo
-4. Go to the repo **Settings > Secrets**
-5. Add the following environment variables.
-   - GH_TOKEN: The GitHub token generated above.
-   - GIST_ID : The Gist id that are updated.
-   - BOOKLOG_USER_ID: Your booklog user id.
+## Example
+
+```yml
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  update-gist:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Update recently read book
+        uses: kazu728/recently-read-book@v0.0.1
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GIST_ID: ${{ secrets.GIST_ID }}
+          BOOKLOG_USER_ID: ${{ secrets.BOOKLOG_USER_ID }}
+```
